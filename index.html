@@ -503,6 +503,30 @@
             transition-delay: .75s;
         }
 
+        #body_cursor,
+        .cursor_inner {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        #body_cursor {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+        }
+
+        .cursor_inner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out;
+        }
+
         /* Mobile Portrait Responsive */
         @media (max-width: 768px) {
             body {
@@ -779,15 +803,15 @@
         }
 
         .cursor_inner.hover {
-            transform: scale(2);
+            transform: translate(-50%, -50%) scale(2);
         }
     </style>
 </head>
 <body>
+
     <div id="body_cursor">
         <div class="cursor_inner"><span></span></div>
     </div>
-
 
     <div id="site_container" class="desktop_version">
         <div id="page" class="hfeed site">
@@ -988,10 +1012,6 @@
     </div>	
     </div>
     
-    <div id="body_cursor">
-        <div class="cursor_inner"><span></span></div>
-    </div>
-
     <script>
         // Mobile Detection (simplified)
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
