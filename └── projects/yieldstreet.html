@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="black">
+    <title>Yieldstreet Executive Thought Leadership | Matthew Silverman</title>
+    
+    <style>
+        /*
+         Theme Name: Hey Studio Portfolio
+         Description: Authentic Hey Studio design implementation
+         Version: 1.0
+         */
+        
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-weight: normal;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 !important;
+            font-family: Helvetica, Helvetica Neue, Arial;
+            font-weight: normal;
+            color: white;
+            font-size: 20px;
+            line-height: 23px;
+            background: #000000;
+            overflow: auto;
+            height: auto;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            outline: none;
+            margin-top: 0;
+        }
+
+        div, ul, li, header, footer, a, figure, img {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        b, strong, h1, h2, h3, h4, h5, h6, label {
+            font-weight: normal;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .clear::after {
+            clear: both;
+            display: block;
+            content: '';
+        }
+
+        /* Header */
+        #masthead {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid white;
+            height: 60px;
+            z-index: 10;
+            background: black;
+        }
+
+        .header_wrapper {
+            position: relative;
+            height: 100%;
+        }
+
+        .logo {
+            position: absolute;
+            left: 1.1724137931034482vw;
+            top: 50%;
+            transform: translate(0%, -50%);
+            font-size: 1.7vw;
+            line-height: 1.7vw;
+            font-weight: bold;
+            color: #2D5BFF;
+        }
+
+        .main_menu {
+            position: absolute;
+            right: 1.75vw;
+            top: 0;
+        }
+
+        .main_menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main_menu ul li {
+            display: inline-block;
+            line-height: 3.931034482758621vw;
+            margin-left: 1.0344827586206897vw;
+        }
+
+        .main_menu ul li a {
+            opacity: 0.5;
+            transition: opacity .25s ease;
+            display: block;
+            position: relative;
+        }
+
+        .main_menu ul li.active a,
+        .main_menu ul li a:hover {
+            opacity: 1;
+        }
+
+        .underline {
+            position: relative;
+        }
+
+        .underline:after {
+            position: absolute;
+            bottom: 18px;
+            content: '';
+            background: white;
+            height: 1px;
+            min-height: 1px;
+            width: 0;
+            left: 0;
+            transition: width .25s linear;
+        }
+
+        .underline:hover:after {
+            width: 100%;
+        }
+
+        /* Page Layout */
+        #page {
+            min-height: 100vh;
+            padding-top: 60px;
+        }
+
+        #content {
+            transition: opacity .25s ease;
+        }
+
+        /* Project Container */
+        .project_container {
+            padding: 4.8275vw 2.0689vw;
+        }
+
+        .project_hero_container {
+            margin-bottom: 60px;
+        }
+
+        .project_hero_image {
+            width: 100%;
+            height: 60vh;
+            background: linear-gradient(135deg, #2D5BFF, #4B7BFF);
+            border-radius: 2.5vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3vw;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .project_header {
+            margin-bottom: 60px;
+        }
+
+        .project_title {
+            font-size: 3.45vw;
+            line-height: 3.93vw;
+            letter-spacing: -0.02em;
+            margin-bottom: 30px;
+            color: #2D5BFF;
+        }
+
+        .project_big_text {
+            font-size: 2.2vw;
+            line-height: 2.8vw;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .project_main_content {
+            display: flex;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .project_credits {
+            width: 400px;
+            flex-shrink: 0;
+        }
+
+        .project_credit_item {
+            margin-bottom: 40px;
+        }
+
+        .project_credit_title {
+            margin-bottom: 8px;
+        }
+
+        .section_color {
+            color: #2D5BFF;
+            font-weight: bold;
+        }
+
+        .project_main_text {
+            flex: 1;
+        }
+
+        .project_main_text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Project Sections */
+        .project_section {
+            margin-bottom: 60px;
+        }
+
+        .project_section h3 {
+            font-size: 2vw;
+            margin-bottom: 20px;
+            color: #2D5BFF;
+        }
+
+        .project_section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Metrics */
+        .project_metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .metric_item {
+            text-align: center;
+        }
+
+        .metric_number {
+            font-size: 3vw;
+            font-weight: bold;
+            color: #2D5BFF;
+            margin-bottom: 10px;
+        }
+
+        .metric_label {
+            font-size: 1.2vw;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        #colophon {
+            border-top: 1px solid white;
+            height: 3.9310344827586206vw;
+            margin-top: 80px;
+        }
+
+        .footer_menu {
+            display: table;
+            width: 100%;
+            line-height: 3.9310344827586206vw;
+        }
+
+        .footer_menu ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: table-row;
+        }
+
+        .footer_menu ul li {
+            display: table-cell;
+            padding: 0 1vw;
+        }
+
+        .footer_menu ul li:last-child {
+            text-align: right;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            .logo {
+                left: 20px;
+                font-size: 20px;
+                line-height: 20px;
+            }
+
+            .main_menu {
+                right: 20px;
+            }
+
+            .main_menu ul li {
+                line-height: 60px;
+                margin-left: 15px;
+            }
+
+            .project_container {
+                padding: 40px 20px;
+            }
+
+            .project_hero_image {
+                height: 40vh;
+                font-size: 24px;
+                border-radius: 15px;
+            }
+
+            .project_title {
+                font-size: 28px;
+                line-height: 32px;
+            }
+
+            .project_big_text {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            .project_main_content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .project_credits {
+                width: 100%;
+            }
+
+            .project_section h3 {
+                font-size: 24px;
+            }
+
+            .metric_number {
+                font-size: 32px;
+            }
+
+            .metric_label {
+                font-size: 14px;
+            }
+
+            .footer_menu ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .footer_menu ul li {
+                display: block;
+                padding: 0;
+                text-align: center;
+            }
+        }
+
+        /* Animation styles */
+        [data-aos=fade-up] {
+            transform: translate3d(0,100px,0);
+        }
+
+        [data-aos^=fade] {
+            opacity: 0;
+            transition-property: opacity,transform;
+            transition-duration: 1.4s;
+            transition-timing-function: ease;
+        }
+
+        [data-aos^=fade].aos-animate {
+            opacity: 1;
+            transform: translateZ(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="site_container" class="desktop_version">
+        <div id="page" class="hfeed site">
+            <header id="masthead" class="site-header" role="banner">
+                <div class="header_wrapper clear">
+                    <a href="../index.html" class="logo">MS</a>
+                    <div class="main_menu">
+                        <ul class="main-nav">
+                            <li class="item"><a href="../index.html#home" class="title pointer underline">Work</a></li>
+                            <li class="item"><a href="../index.html#about" class="title pointer underline">Approach</a></li>
+                            <li class="item"><a href="../index.html#contact" class="title pointer underline">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div id="content" class="site-content">
+                <div class="project_container">
+                    <div class="project_hero_container" data-aos="fade-up">
+                        <div class="project_hero_image">
+                            Yieldstreet Executive Thought Leadership
+                        </div>
+                    </div>
+
+                    <div class="project_header">
+                        <div class="project_title section_color" data-aos="fade-up">
+                            Yieldstreet Executive Thought Leadership
+                        </div>
+                        <div class="project_big_text" data-aos="fade-up">
+                            Transforming C-suite communication strategy in alternative investments
+                        </div>
+                    </div>
+
+                    <div class="project_main_content clear">
+                        <div class="project_credits">
+                            <div class="project_credit_item">
+                                <div class="project_credit_title section_color" data-aos="fade-up">Client</div>
+                                <div class="project_credit_title" data-aos="fade-up">Yieldstreet</div>
+                            </div>
+                            <div class="project_credit_item">
+                                <div class="project_credit_title section_color" data-aos="fade-up">Services</div>
+                                <div class="project_credit_title" data-aos="fade-up">
+                                    Strategic Communications<br>
+                                    Executive Storytelling<br>
+                                    Thought Leadership
+                                </div>
+                            </div>
+                            <div class="project_credit_item">
+                                <div class="project_credit_title section_color" data-aos="fade-up">Industry</div>
+                                <div class="project_credit_title" data-aos="fade-up">
+                                    Financial Technology<br>
+                                    Alternative Investments
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project_main_text">
+                            <div class="project_section" data-aos="fade-up">
+                                <h3>Challenge</h3>
+                                <p>Yieldstreet's executive team needed to establish stronger thought leadership positioning in the competitive fintech space. Previous communications lacked strategic focus and failed to leverage the unique expertise of leadership.</p>
+                            </div>
+
+                            <div class="project_section" data-aos="fade-up">
+                                <h3>Strategy</h3>
+                                <p>Developed a comprehensive executive narrative strategy focusing on alternative investment expertise, market insights, and democratization of private markets. Created content pillars around market trends, investor education, and regulatory perspectives.</p>
+                            </div>
+
+                            <div class="project_metrics">
+                                <div class="metric_item" data-aos="fade-up">
+                                    <div class="metric_number">70%</div>
+                                    <div class="metric_label">LinkedIn Growth</div>
+                                </div>
+                                <div class="metric_item" data-aos="fade-up">
+                                    <div class="metric_number">30%</div>
+                                    <div class="metric_label">Tier-One Placements</div>
+                                </div>
+                                <div class="metric_item" data-aos="fade-up">
+                                    <div class="metric_number">5+</div>
+                                    <div class="metric_label">Published Op-Eds</div>
+                                </div>
+                            </div>
+
+                            <div class="project_section" data-aos="fade-up">
+                                <h3>Impact</h3>
+                                <p>Successfully positioned leadership as industry experts, resulting in increased speaking opportunities, media requests, and enhanced brand credibility in the alternative investment space. The strategic approach transformed how executives communicated complex financial concepts to diverse stakeholder groups.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="footer_wrapper clear">
+                <div class="footer_menu">
+                    <ul class="footer-nav">
+                        <li>
+                            <a class="underline inverted_underline">
+                                © 2025 Matthew Silverman
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:mjsilverman19@gmail.com" class="underline inverted_underline">
+                                Ready to collaborate?
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple AOS (Animate On Scroll) implementation
+        function initAOS() {
+            const elements = document.querySelectorAll('[data-aos]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initAOS();
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
