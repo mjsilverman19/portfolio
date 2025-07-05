@@ -216,11 +216,9 @@
 
         /* Word Burst Animations */
         .word {
-    display: inline-block;
+    display: inline;
     transition: all 0.3s ease;
     position: relative;
-    white-space: nowrap;
-    margin-right: 0.25em;
 }
 
         .word.hit {
@@ -1202,11 +1200,11 @@
                             });
                             
                             element.appendChild(wordSpan);
-                            
+if (wordIndex < words.length - 1) {
+    element.appendChild(document.createTextNode(' '));
+}
                             
                         });
-                    });
-                }
 
                 // Check collision between ball and words
                 function checkWordCollisions() {
