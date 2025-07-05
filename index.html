@@ -1191,7 +1191,7 @@
                             wordSpan.className = 'word';
                             wordSpan.style.position = 'relative';
                             wordSpan.style.display = 'inline-block';
-                            wordSpan.style.margin = '0 0.15em';
+                            wordSpan.style.margin = '0 0.3em 0 0';
                             
                             // Split word into letters
                             word.split('').forEach(letter => {
@@ -1203,9 +1203,7 @@
                             
                             element.appendChild(wordSpan);
                             
-                            if (wordIndex < words.length - 1) {
-                                element.appendChild(document.createTextNode(' '));
-                            }
+                            
                         });
                     });
                 }
