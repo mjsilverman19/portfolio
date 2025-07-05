@@ -984,6 +984,15 @@
 
                 <!-- About Section -->
                 <section id="about" class="values_container">
+                    <div class="value_item" data-aos="fade-up">
+                        <div class="value_item_title">
+                            <p>Strategic Communications</p>
+                        </div>
+                        <div class="value_item_text">
+                            <p>I develop and execute communications strategies that align messaging with business objectives. From M&A announcements to thought leadership campaigns, I ensure every narrative drives measurable results and stakeholder engagement.</p>
+                        </div>
+                    </div>
+
                     <div class="value_item" data-aos="fade-up" data-aos-delay="200">
                         <div class="value_item_title">
                             <p>Executive Storytelling</p>
@@ -1142,19 +1151,16 @@
             elements.forEach(el => {
                 observer.observe(el);
             });
-
         }
+
         document.addEventListener('DOMContentLoaded', function() {
             initAOS();
-            
-            // Add loaded class to body for transitions
             document.body.classList.add('loaded');
         });
 
         // Enhanced bouncing ball with word burst collision detection
         function initBouncingBallWithCollisions() {
             try {
-                // Skip on mobile devices
                 if (window.innerWidth <= 768) return;
                 
                 const ball = document.querySelector('#bouncingBall');
@@ -1475,13 +1481,4 @@
         });
     </script>
 </body>
-</html>fade-up">
-                        <div class="value_item_title">
-                            <p>Strategic Communications</p>
-                        </div>
-                        <div class="value_item_text">
-                            <p>I develop and execute communications strategies that align messaging with business objectives. From M&A announcements to thought leadership campaigns, I ensure every narrative drives measurable results and stakeholder engagement.</p>
-                        </div>
-                    </div>
-
-                    <div class="value_item" data-aos="
+</html>
