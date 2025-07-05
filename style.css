@@ -20,3 +20,4 @@ a{color:white;text-decoration:none}
 .metric_item{text-align:center;padding:20px;border:1px solid rgba(255,255,255,0.2);border-radius:12px}
 .metric_number{font-size:24px;font-weight:bold;color:#FF6B4A;margin-bottom:5px}
 .metric_label{font-size:14px;opacity:0.7}
+.modal_subtitle{text-align:center;margin:0 0 20px}
