@@ -216,10 +216,12 @@
 
         /* Word Burst Animations */
         .word {
-            display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    margin-right: 0.25em;
+}
 
         .word.hit {
             animation: wordBurst 0.8s ease-out forwards;
@@ -1189,9 +1191,7 @@
                         words.forEach((word, wordIndex) => {
                             const wordSpan = document.createElement('span');
                             wordSpan.className = 'word';
-                            wordSpan.style.position = 'relative';
-                            wordSpan.style.display = 'inline';
-                            wordSpan.style.margin = '0 0.3em 0 0';
+                    
                             
                             // Split word into letters
                             word.split('').forEach(letter => {
