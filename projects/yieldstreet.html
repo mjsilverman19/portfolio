@@ -4,7 +4,375 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yieldstreet Executive Thought Leadership</title>
-    <link rel="stylesheet" href="../style.css">
+    <style>
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-weight: normal;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0 !important;
+            font-family: Helvetica, Helvetica Neue, Arial;
+            font-weight: normal;
+            color: white;
+            font-size: 20px;
+            line-height: 23px;
+            background: #000000;
+            overflow: auto;
+            height: auto;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            outline: none;
+            margin-top: 0;
+        }
+
+        div, ul, li, header, footer, a, figure, img {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .clear::after {
+            clear: both;
+            display: block;
+            content: '';
+        }
+
+        /* Header - using your existing styles */
+        #masthead {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid white;
+            height: 60px;
+            z-index: 10;
+            background: black;
+        }
+
+        .header_wrapper {
+            position: relative;
+            height: 100%;
+        }
+
+        .logo {
+            position: absolute;
+            left: 1.1724137931034482vw;
+            top: 50%;
+            transform: translate(0%, -50%);
+            font-size: 1.7vw;
+            line-height: 1.7vw;
+            font-weight: bold;
+        }
+
+        .main_menu {
+            position: absolute;
+            right: 1.75vw;
+            top: 0;
+        }
+
+        .main_menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main_menu ul li {
+            display: inline-block;
+            line-height: 3.931034482758621vw;
+            margin-left: 1.0344827586206897vw;
+        }
+
+        .main_menu ul li a {
+            opacity: 0.5;
+            transition: opacity .25s ease;
+            display: block;
+            position: relative;
+        }
+
+        .main_menu ul li.active a,
+        .main_menu ul li a:hover {
+            opacity: 1;
+        }
+
+        .underline {
+            position: relative;
+        }
+
+        .underline:after {
+            position: absolute;
+            bottom: 18px;
+            content: '';
+            background: white;
+            height: 1px;
+            min-height: 1px;
+            width: 0;
+            left: 0;
+            transition: width .25s linear;
+        }
+
+        .underline:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section - inspired by Hey Studio but using your color scheme */
+        .hero_section {
+            margin-top: 60px;
+            height: 50vh;
+            background: linear-gradient(135deg, #2D5BFF, #4B7BFF);
+            border-radius: 0 0 60px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero_content {
+            text-align: left;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2.0689vw;
+        }
+
+        .project_title {
+            font-size: clamp(48px, 8vw, 120px);
+            font-weight: normal;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .project_subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            font-weight: normal;
+            max-width: 600px;
+            line-height: 1.3;
+        }
+
+        /* Main Content */
+        .main_content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4.8275vw 2.0689vw;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 120px;
+        }
+
+        /* Project Info Sidebar */
+        .project_info {
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+        }
+
+        .info_section {
+            margin-bottom: 3vw;
+        }
+
+        .info_label {
+            color: #2D5BFF;
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .info_value {
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: normal;
+        }
+
+        .info_value.multiple {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Content Area */
+        .content_area {
+            padding-top: 20px;
+        }
+
+        .section_title {
+            color: #2D5BFF;
+            font-size: 3.45vw;
+            font-weight: normal;
+            margin-bottom: 1.5vw;
+            letter-spacing: -0.02em;
+            line-height: 3.93vw;
+        }
+
+        .section_content {
+            font-size: 20px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: normal;
+            max-width: 600px;
+        }
+
+        .section_content p {
+            margin-bottom: 24px;
+        }
+
+        .section_content em {
+            font-style: italic;
+            color: white;
+        }
+
+        /* Footer - using your existing styles */
+        #colophon {
+            border-top: 1px solid white;
+            height: 3.9310344827586206vw;
+        }
+
+        .footer_menu {
+            display: table;
+            width: 100%;
+            line-height: 3.9310344827586206vw;
+        }
+
+        .footer_menu ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: table-row;
+        }
+
+        .footer_menu ul li {
+            display: table-cell;
+            padding: 0 1vw;
+        }
+
+        .footer_menu ul li:last-child {
+            text-align: right;
+        }
+
+        .inverted_underline.underline:after {
+            width: 100%;
+        }
+
+        .inverted_underline.underline:hover:after {
+            width: 0%;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            #masthead {
+                height: 60px;
+            }
+
+            .logo {
+                left: 20px;
+                font-size: 20px;
+                line-height: 20px;
+            }
+
+            .main_menu {
+                right: 20px;
+            }
+
+            .main_menu ul li {
+                line-height: 60px;
+                margin-left: 15px;
+            }
+
+            .main_menu ul li a {
+                font-size: 14px;
+            }
+
+            .hero_section {
+                height: 60vh;
+                border-radius: 0 0 40px 40px;
+            }
+
+            .hero_content {
+                padding: 0 20px;
+            }
+
+            .project_subtitle {
+                font-size: 18px;
+            }
+
+            .main_content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .project_info {
+                position: static;
+                order: 2;
+            }
+
+            .content_area {
+                order: 1;
+            }
+
+            .section_title {
+                font-size: 24px;
+                line-height: 28px;
+            }
+
+            .section_content {
+                font-size: 16px;
+            }
+
+            #colophon {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .footer_menu {
+                line-height: normal;
+            }
+
+            .footer_menu ul {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer_menu ul li {
+                display: block;
+                padding: 0;
+                text-align: center;
+            }
+        }
+
+        /* Animation */
+        .content_area {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -21,49 +389,65 @@
     </div>
 </header>
 
-<div class="hero" style="background:linear-gradient(135deg,#FF6B4A,#FF8E53)">
-    <h1>Yieldstreet Executive Thought Leadership</h1>
+<section class="hero_section">
+    <div class="hero_content">
+        <h1 class="project_title">Yieldstreet</h1>
+        <p class="project_subtitle">Executive communications that move alternative investment markets</p>
+    </div>
+</section>
+
+<div class="main_content">
+    <aside class="project_info">
+        <div class="info_section">
+            <div class="info_label">Client</div>
+            <div class="info_value">Yieldstreet</div>
+        </div>
+        
+        <div class="info_section">
+            <div class="info_label">Services</div>
+            <div class="info_value multiple">
+                <span>Thought Leadership</span>
+                <span>Content Strategy</span>
+                <span>Executive Positioning</span>
+            </div>
+        </div>
+        
+        <div class="info_section">
+            <div class="info_label">Industry</div>
+            <div class="info_value">Alternative Investments</div>
+        </div>
+    </aside>
+
+    <main class="content_area">
+        <h2 class="section_title">Narrative strategy creates market authority</h2>
+        <div class="section_content">
+            <p>Building authentic thought leadership for Yieldstreet's executive team meant translating complex alternative investment expertise into compelling narratives that resonate with institutional investors, retail clients, and industry media.</p>
+            
+            <p>I developed a strategic content framework focusing on market democratization, regulatory insights, and alternative asset expertise. The approach positioned leadership as authoritative voices while maintaining the technical accuracy required for financial communications.</p>
+            
+            <p>Through consistent messaging across op-eds, speaking opportunities, and social platforms, the program drove measurable engagement growth and enhanced market positioning. The result: 70% LinkedIn growth and multiple tier-one media placements establishing Yieldstreet executives as industry thought leaders.</p>
+        </div>
+    </main>
 </div>
 
-<div class="content_wrapper">
-    <p class="modal_subtitle">Transforming C-suite communication strategy in alternative investments</p>
-
-    <div class="project_credits">
-        <div class="project_credit_item">
-            <div class="project_credit_title">Client</div>
-            <div class="project_credit_value">Yieldstreet</div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="footer_wrapper clear">
+        <div class="footer_menu">
+            <ul class="footer-nav">
+                <li>
+                    <a class="underline inverted_underline">
+                        © 2025 Matthew Silverman
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:mjsilverman19@gmail.com" class="underline inverted_underline">
+                        Ready to collaborate?
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="project_credit_item">
-            <div class="project_credit_title">Services</div>
-            <div class="project_credit_value">Thought Leadership</div>
-        </div>
-        <div class="project_credit_item">
-            <div class="project_credit_title">Industry</div>
-            <div class="project_credit_value">Fintech</div>
-        </div>
     </div>
-
-    <div class="modal_section">
-        <h3>Challenge</h3>
-        <p>Yieldstreet's executive team needed to establish stronger thought leadership positioning in the competitive fintech space. Previous communications lacked strategic focus and failed to leverage the unique expertise of leadership.</p>
-    </div>
-
-    <div class="modal_section">
-        <h3>Strategy</h3>
-        <p>Developed a comprehensive executive narrative strategy focusing on alternative investment expertise, market insights, and democratization of private markets. Created content pillars around market trends, investor education, and regulatory perspectives.</p>
-    </div>
-
-    <div class="modal_metrics">
-        <div class="metric_item"><div class="metric_number">70%</div><div class="metric_label">LinkedIn Growth</div></div>
-        <div class="metric_item"><div class="metric_number">30%</div><div class="metric_label">Tier-One Placements</div></div>
-        <div class="metric_item"><div class="metric_number">5+</div><div class="metric_label">Published Op-Eds</div></div>
-    </div>
-
-    <div class="modal_section">
-        <h3>Impact</h3>
-        <p>Successfully positioned leadership as industry experts, resulting in increased speaking opportunities, media requests, and enhanced brand credibility in the alternative investment space.</p>
-    </div>
-</div>
+</footer>
 
 </body>
 </html>
