@@ -216,10 +216,10 @@
 
         /* Word Burst Animations */
         .word {
-    display: inline;
-    transition: all 0.3s ease;
-    position: relative;
-}
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
         .word.hit {
             animation: wordBurst 0.8s ease-out forwards;
@@ -1158,204 +1158,55 @@
             document.body.classList.add('loaded');
         });
 
+        // Enhanced bouncing ball with word burst collision detection
         function initBouncingBallWithCollisions() {
-    try {
-        if (window.innerWidth <= 768) return;
-
-        const ball = document.querySelector('#bouncingBall');
-        const container = document.querySelector('.intro_container');
-
-        if (!ball || !container) return;
-
-        let animationId;
-        let x = Math.random() * (container.offsetWidth - 60);
-        let y = Math.random() * (container.offsetHeight - 60);
-        let vx = (Math.random() - 0.5) * 5;
-        let vy = (Math.random() - 0.5) * 5;
-
-        ball.style.left = x + 'px';
-        ball.style.top = y + 'px';
-
-        // Convert text elements to interactive words
-        function prepareTextForCollision() {
-            const textElements = container.querySelectorAll('h1, .intro_description');
-
-            textElements.forEach(element => {
-                const text = element.textContent;
-                element.innerHTML = '';
-
-                const words = text.split(' ');
-                words.forEach((word, wordIndex) => {
-                    const wordSpan = document.createElement('span');
-                    wordSpan.className = 'word';
-
-                    // Split word into letters
-                    word.split('').forEach(letter => {
-                        const letterSpan = document.createElement('span');
-                        letterSpan.className = 'letter';
-                        letterSpan.textContent = letter;
-                        wordSpan.appendChild(letterSpan);
-                    });
-
-                    element.appendChild(wordSpan);
-                    if (wordIndex < words.length - 1) {
-                        element.appendChild(document.createTextNode(' '));
-                    }
-                });
-            });
-        } // <-- Missing closing brace added here
-
-        // Check collision between ball and words
-        function checkWordCollisions() {
-            const ballRect = {
-                left: x,
-                top: y,
-                right: x + 60,
-                bottom: y + 60
-            };
-
-            const words = container.querySelectorAll('.word:not(.hit)');
-
-            words.forEach(word => {
-                const wordRect = word.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-
-                // Adjust coordinates relative to container
-                const adjustedWordRect = {
-                    left: wordRect.left - containerRect.left,
-                    top: wordRect.top - containerRect.top,
-                    right: wordRect.right - containerRect.left,
-                    bottom: wordRect.bottom - containerRect.top
-                };
-
-                if (ballRect.right > adjustedWordRect.left &&
-                    ballRect.left < adjustedWordRect.right &&
-                    ballRect.bottom > adjustedWordRect.top &&
-                    ballRect.top < adjustedWordRect.bottom) {
-
-                    burstWord(word, adjustedWordRect);
-                }
-            });
-        }
-
-        // Burst word animation
-        function burstWord(wordElement, wordRect) {
-            wordElement.classList.add('hit');
-
-            // Create particles
-            createParticles(
-                wordRect.left + wordRect.width / 2,
-                wordRect.top + wordRect.height / 2
-            );
-
-            // Animate letters exploding
-            const letters = wordElement.querySelectorAll('.letter');
-            letters.forEach((letter, index) => {
-                setTimeout(() => {
-                    const angle = (Math.PI * 2 * index) / letters.length + Math.random() * 0.5;
-                    const distance = 40 + Math.random() * 60;
-                    const tx = Math.cos(angle) * distance;
-                    const ty = Math.sin(angle) * distance;
-                    const rotate = Math.random() * 720 - 360;
-
-                    letter.style.setProperty('--tx', tx + 'px');
-                    letter.style.setProperty('--ty', ty + 'px');
-                    letter.style.setProperty('--rotate', rotate + 'deg');
-                    letter.classList.add('burst');
-                }, index * 40);
-            });
-
-            // Make word invisible after burst
-            setTimeout(() => {
-                wordElement.style.opacity = '0';
-            }, 300);
-
-            // Reset word after delay
-            setTimeout(() => {
-                wordElement.classList.remove('hit');
-                wordElement.style.opacity = '1';
-                const letters = wordElement.querySelectorAll('.letter');
-                letters.forEach(letter => {
-                    letter.classList.remove('burst');
-                    letter.style.removeProperty('--tx');
-                    letter.style.removeProperty('--ty');
-                    letter.style.removeProperty('--rotate');
-                });
-            }, 4000);
-        }
-
-        // Create particle effect
-        function createParticles(centerX, centerY) {
-            for (let i = 0; i < 12; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.position = 'absolute';
-                particle.style.left = centerX + 'px';
-                particle.style.top = centerY + 'px';
-
-                const angle = (Math.PI * 2 * i) / 12;
-                const distance = 40 + Math.random() * 50;
-                const px = Math.cos(angle) * distance;
-                const py = Math.sin(angle) * distance;
-
-                particle.style.setProperty('--px', px + 'px');
-                particle.style.setProperty('--py', py + 'px');
-
-                container.appendChild(particle);
-
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 1000);
-            }
-        }
-
-        // Initialize text preparation
-        prepareTextForCollision();
-
-        function animate() {
             try {
-                if (!ball || !container) {
-                    if (animationId) cancelAnimationFrame(animationId);
-                    return;
-                }
+                if (window.innerWidth <= 768) return;
+                
+                const ball = document.querySelector('#bouncingBall');
+                const container = document.querySelector('.intro_container');
+                
+                if (!ball || !container) return;
 
-                x += vx;
-                y += vy;
-
-                const containerWidth = container.offsetWidth;
-                const containerHeight = container.offsetHeight;
-
-                // Bounce off walls
-                if (x <= 0 || x >= containerWidth - 60) {
-                    vx = -vx;
-                    x = Math.max(0, Math.min(x, containerWidth - 60));
-                }
-
-                if (y <= 0 || y >= containerHeight - 60) {
-                    vy = -vy;
-                    y = Math.max(0, Math.min(y, containerHeight - 60));
-                }
-
+                let animationId;
+                let x = Math.random() * (container.offsetWidth - 60);
+                let y = Math.random() * (container.offsetHeight - 60);
+                let vx = (Math.random() - 0.5) * 5;
+                let vy = (Math.random() - 0.5) * 5;
+                
                 ball.style.left = x + 'px';
                 ball.style.top = y + 'px';
 
-                // Check for word collisions
-                checkWordCollisions();
-
-                animationId = requestAnimationFrame(animate);
-            } catch (e) {
-                console.warn('Ball animation error:', e);
-                if (animationId) cancelAnimationFrame(animationId);
-            }
-        }
-
-        animate();
-    } catch (e) {
-        console.warn('Ball initialization failed:', e);
-    }
-}
+                // Convert text elements to interactive words
+                function prepareTextForCollision() {
+                    const textElements = container.querySelectorAll('h1, .intro_description');
+                    
+                    textElements.forEach(element => {
+                        const text = element.textContent;
+                        element.innerHTML = '';
+                        
+                        const words = text.split(' ');
+                        words.forEach((word, wordIndex) => {
+                            const wordSpan = document.createElement('span');
+                            wordSpan.className = 'word';
+                            wordSpan.style.position = 'relative';
+                            wordSpan.style.display = 'inline';
+                            wordSpan.style.margin = '0 0.3em 0 0';
+                            
+                            // Split word into letters
+                            word.split('').forEach(letter => {
+                                const letterSpan = document.createElement('span');
+                                letterSpan.className = 'letter';
+                                letterSpan.textContent = letter;
+                                wordSpan.appendChild(letterSpan);
+                            });
+                            
+                            element.appendChild(wordSpan);
+                            
+                            
+                        });
+                    });
+                }
 
                 // Check collision between ball and words
                 function checkWordCollisions() {
