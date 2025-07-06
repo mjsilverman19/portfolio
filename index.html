@@ -199,7 +199,8 @@
             font-size: 24px;
             line-height: 32px;
             opacity: 0.8;
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
+            text-align: center;
         }
 
         /* Bouncing Ball */
@@ -652,7 +653,8 @@
             .intro_description {
                 font-size: 16px;
                 line-height: 20px;
-                margin-bottom: 20px;
+                margin: 0 auto 20px;
+                text-align: center;
             }
 
             .main_grid_container {
@@ -1181,7 +1183,9 @@
 
                 // Convert text elements to interactive words
                 function prepareTextForCollision() {
-                    const textElements = container.querySelectorAll('h1, .intro_description');
+                // Only split the main title text for the bouncing word effect.
+                // Keeping the subtitle intact ensures it remains perfectly centered.
+                const textElements = container.querySelectorAll('h1');
                     
                     textElements.forEach(element => {
                         const text = element.textContent;
